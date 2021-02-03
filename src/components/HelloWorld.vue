@@ -25,7 +25,7 @@
     <v-divider class="mt-4"></v-divider>
 
     <v-card v-if="tasks.length > 0">
-      <v-slide-y-transition class="py-0" group tag="v-list">
+      <v-slide-y-transition class="py-0" group>
         <template v-for="(task, i) in tasks">
           <v-divider v-if="i !== 0" :key="`${i}-divider`"></v-divider>
 
@@ -79,6 +79,7 @@ export default Vue.extend({
   },
   methods: {
     create() {
+      if(this.newTask === "") return
       this.tasks.push({
         done: false,
         text: this.newTask
