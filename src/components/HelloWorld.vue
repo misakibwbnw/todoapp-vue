@@ -64,7 +64,10 @@ import Vue from "vue";
 interface TodoTask {
   done: boolean,
   text: string
-} 
+}
+interface HTMLEvent extends Event {
+  keyCode: number;
+}
 
 export default Vue.extend({
   name: "HelloWorld",
@@ -78,8 +81,8 @@ export default Vue.extend({
     };
   },
   methods: {
-    create() {
-      if(this.newTask === "") return
+    create(event: HTMLEvent) {
+      if(event.keyCode !== 13 || this.newTask === "") return
       this.tasks.push({
         done: false,
         text: this.newTask
