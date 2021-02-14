@@ -13,10 +13,6 @@
 import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
 
-interface TodoTask {
-  done: boolean;
-  text: string;
-}
 interface HTMLEvent extends Event {
   keyCode: number;
 }
@@ -36,13 +32,7 @@ export default Vue.extend({
     add(event: HTMLEvent) {
       if (event.keyCode !== 13 || this.newTask === "") return;
 
-      const tasks = this.tasks;
-      tasks.push({
-        done: false,
-        text: this.newTask
-      });
-
-      this.addTask(tasks);
+      this.addTask(this.newTask);
       this.newTask = "";
     },
     ...mapActions(["addTask"])

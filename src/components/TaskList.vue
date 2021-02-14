@@ -9,6 +9,7 @@
             <v-list-item-action>
               <v-checkbox
                 v-model="task.done"
+                @change="changeDone(task)"
                 :color="(task.done && 'grey') || 'primary'"
               >
                 <template v-slot:label>
@@ -36,11 +37,7 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import { mapGetters } from "vuex";
-
-interface HTMLEvent extends Event {
-  keyCode: number;
-}
+import { mapGetters, mapActions } from "vuex";
 
 export default Vue.extend({
   name: "TaskList",
@@ -52,6 +49,8 @@ export default Vue.extend({
   computed: {
     ...mapGetters(["tasks"])
   },
-  methods: {}
+  methods: {
+    ...mapActions(["changeDone"])
+  }
 });
 </script>
